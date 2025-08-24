@@ -48,8 +48,8 @@ const Home = () => {
       
       {/* Main Content */}
       <div className="relative z-10 min-h-screen pt-24">
-        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-10 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-8 lg:gap-16 items-center min-h-screen">
+        <div className="container mx-auto px-6 sm:px-12 md:px-24 lg:px-32 xl:px-48 max-w-[1600px]">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center min-h-screen">
             
             {/* Left Column - Text Content */}
             <div className="space-y-8">
@@ -90,7 +90,7 @@ const Home = () => {
               </div>
 
               {/* Social Links */}
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-6 w-full md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mb-8">
                 {socialLinks.map((social) => (
                   <Link
                     key={social.name}
@@ -131,7 +131,7 @@ const Home = () => {
                            
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto py-12 mt-32 md:mt-40 lg:mt-48 xl:mt-56">
               <div className="bg-card/30 backdrop-blur-sm rounded-xl p-8 border border-border/20 hover:shadow-soft transition-all duration-300 hover:scale-105">
                 <div className="flex items-center gap-3 mb-4">
                   <Code className="w-7 h-7 text-primary" />

@@ -30,14 +30,14 @@ const Header = () => {
             </div>
           </Link>
           
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex justify-center items-center space-x-8 w-full">
             <Link 
               to="/"
               className={`transition-colors story-link ${
                 location.pathname === '/' 
                   ? 'text-primary' 
                   : 'text-foreground/80 hover:text-primary'
-              }`}
+              } text-lg font-medium`}
             >
               Sobre mim
             </Link>
@@ -47,7 +47,7 @@ const Header = () => {
                 location.pathname === '/curriculo' 
                   ? 'text-primary' 
                   : 'text-foreground/80 hover:text-primary'
-              }`}
+              } text-lg font-medium`}
             >
               Currículo
             </Link>
@@ -57,7 +57,7 @@ const Header = () => {
                 location.pathname === '/experiencias' 
                   ? 'text-primary' 
                   : 'text-foreground/80 hover:text-primary'
-              }`}
+              } text-lg font-medium`}
             >
               Experiência
             </Link>
@@ -67,7 +67,7 @@ const Header = () => {
                 location.pathname === '/projetos' 
                   ? 'text-primary' 
                   : 'text-foreground/80 hover:text-primary'
-              }`}
+              } text-lg font-medium`}
             >
               Projetos
             </Link>

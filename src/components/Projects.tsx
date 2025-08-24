@@ -26,6 +26,16 @@ const Projects = () => {
       featured: true
     },
 
+    {
+      title: "Hotel Descansar",
+      description: "Um projeto desenvolvido em C para o Hotel, como parte de um trabalho acadêmico. Automatiza o cadastro de clientes, funcionários e estadias, simplificando a gestão manual com planilhas e garantindo integridade de dados.",
+      image: "/hotel.jpg",
+      technologies: ["C"],
+      github: "https://github.com/kayqueallan/project-in-C-Hotel",
+      demo: "#",
+      featured: true
+    },
+
 
   ];
 

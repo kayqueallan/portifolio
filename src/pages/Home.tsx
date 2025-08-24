@@ -47,9 +47,9 @@ const Home = () => {
       <div className="absolute inset-0 bg-background/90" />
       
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen">
-        <div className="container mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-screen">
+      <div className="relative z-10 min-h-screen pt-24">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-10 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-8 lg:gap-16 items-center min-h-screen">
             
             {/* Left Column - Text Content */}
             <div className="space-y-8">
@@ -105,13 +105,13 @@ const Home = () => {
             </div>
 
             {/* Right Column - Profile Image */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
+            <div className="flex justify-center lg:justify-end w-full">
+              <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg">
                 {/* Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/10 rounded-2xl blur-xl transform rotate-6"></div>
                 
                 {/* Profile Photo Container */}
-                <div className="relative w-80 h-96 lg:w-96 lg:h-[480px] rounded-2xl overflow-hidden border border-border/20 bg-gradient-to-br from-primary/20 to-accent/20 animate-float shadow-strong">
+                <div className="relative w-full h-44 sm:h-60 md:h-80 lg:w-96 lg:h-[480px] rounded-2xl overflow-hidden border border-border/20 bg-gradient-to-br from-primary/20 to-accent/20 animate-float shadow-strong">
                   <img 
                     src={profilePhoto} 
                     alt="Foto de perfil profissional" 
@@ -137,7 +137,7 @@ const Home = () => {
                   <Code className="w-7 h-7 text-primary" />
                   <h4 className="text-xl font-medium text-primary">Frontend</h4>
                 </div>
-                <p className="text-muted-foreground text-base">React, TypeScript, Next.js, Tailwind CSS</p>
+                <p className="text-muted-foreground text-base">React, TypeScript, JavaScript, Tailwind CSS, HTML, CSS</p>
               </div>
               
               <div className="bg-card/30 backdrop-blur-sm rounded-xl p-8 border border-border/20 hover:shadow-soft transition-all duration-300 hover:scale-105">
@@ -145,7 +145,7 @@ const Home = () => {
                   <Server className="w-7 h-7 text-accent" />
                   <h4 className="text-xl font-medium text-accent">Backend</h4>
                 </div>
-                <p className="text-muted-foreground text-base">Node.js, Python, Express, APIs REST</p>
+                <p className="text-muted-foreground text-base">Java, SpringBoot, Node.js, Python, APIs REST</p>
               </div>
               
               <div className="bg-card/30 backdrop-blur-sm rounded-xl p-8 border border-border/20 hover:shadow-soft transition-all duration-300 hover:scale-105">
@@ -153,7 +153,7 @@ const Home = () => {
                   <Database className="w-7 h-7 text-primary" />
                   <h4 className="text-xl font-medium text-primary">Database</h4>
                 </div>
-                <p className="text-muted-foreground text-base">PostgreSQL, MongoDB, Redis</p>
+                <p className="text-muted-foreground text-base">PostgreSQL, MySQL, Redis</p>
               </div>
               
               <div className="bg-card/30 backdrop-blur-sm rounded-xl p-8 border border-border/20 hover:shadow-soft transition-all duration-300 hover:scale-105">
@@ -163,6 +163,7 @@ const Home = () => {
                 </div>
                 <p className="text-muted-foreground text-base">UI/UX, Figma, Design Systems</p>
               </div>
+              
             </div>
           </div>
         </div>

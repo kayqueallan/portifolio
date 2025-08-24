@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const { setTheme, theme } = useTheme();
 
@@ -72,6 +73,7 @@ const Header = () => {
             </Link>
           </div>
 
+          <div className="flex-1" />
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
@@ -92,8 +94,32 @@ const Header = () => {
               </Button>
             </Link>
           </div>
+
+          {/* Botão de menu hambúrguer para telas menores que 770px */}
+          <div className="md:hidden flex items-center">
+            <Button variant="ghost" size="icon" className="mr-1" aria-label="Abrir menu" onClick={() => setMenuOpen(true)}>
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            </Button>
+          </div>
         </nav>
       </div>
+
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur flex flex-col items-center justify-center gap-8">
+          <Button variant="ghost" size="icon" className="absolute top-4 right-4" aria-label="Fechar menu" onClick={() => setMenuOpen(false)}>
+            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </Button>
+          <Link to="/" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Sobre mim</Link>
+          <Link to="/curriculo" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Currículo</Link>
+          <Link to="/experiencias" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Experiência</Link>
+          <Link to="/projetos" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Projetos</Link>
+          <Link to="/contato" onClick={() => setMenuOpen(false)}>
+            <Button className="bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 hover:scale-105 mt-2">
+              Contato
+            </Button>
+          </Link>
+        </div>
+      )}
     </header>
   );
 };

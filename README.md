@@ -111,7 +111,7 @@ Para configurar e executar o projeto localmente, siga os passos abaixo:
 
 O site está publicado e pode ser acessado através do seguinte link:
 
-[Kayque Allan - Portfólio Online](https://portfolio-tiagoba.vercel.app)
+[Kayque Allan - Portfólio Online](https://kayqueallan-projects.vercel.app/)
 
 ## Wireframes
 

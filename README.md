@@ -113,7 +113,8 @@ O site está publicado e pode ser acessado através do seguinte link:
 
 [Kayque Allan - Portfólio Online](https://kayqueallan-projects.vercel.app/)
 
-## Wireframes
+
+## Wireframes - [Figma](https://www.figma.com/design/JI4FQOR98fX3cEHrpgUHqW/Sem-t%C3%ADtulo?node-id=0-1&t=nRyNeBgcnuGm95W4-1).
 
 **Home:**
 

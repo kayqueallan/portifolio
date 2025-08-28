@@ -63,8 +63,8 @@ Para configurar e executar o projeto localmente, siga os passos abaixo:
 1.  **Clone o repositório:**
 
     ```bash
-    git clone https://github.com/TiagoBoavAmaral/Portfolio-TiagoBA.git
-    cd portfolio-tiagoba
+    git clone https://github.com/kayqueallan/portifolio.git
+    cd portifolio
     ```
 
 2.  **Instale as dependências:**

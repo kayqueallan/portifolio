@@ -32,7 +32,7 @@ Para uma lista completa, consulte o arquivo `package.json`.
 A estrutura de diretórios do projeto está organizada da seguinte forma:
 
 ```
-portfolio-tiagoba/
+portfolio/
   ├── public/                      # Arquivos estáticos (favicon, imagens placeholder, robots.txt)
   ├── src/
   │   ├── assets/                  # Imagens e outros recursos

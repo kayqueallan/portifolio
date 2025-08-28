@@ -51,7 +51,9 @@ portfolio-tiagoba/
   ├── tailwind.config.ts           # Configurações do Tailwind CSS
   ├── tsconfig.json                # Configurações do TypeScript
   ├── vite.config.ts               # Configurações do Vite
+  └── vercel.json                  # Configurações do Vercel.json
   └── README.md                    # Este arquivo README
+  
 ```
 
 ## Instruções de Instalação e Execução Localmente

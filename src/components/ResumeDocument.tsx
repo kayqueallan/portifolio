@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, Globe, Mail, Phone, MapPin, Github, Linkedin, Loader2 } from "lucide-react";
+import { Download, Mail, Phone, MapPin, Github, Linkedin, Loader2 } from "lucide-react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ResumeDocument = () => {
-  const [language, setLanguage] = useState<'pt' | 'en'>('pt');
+  const { language } = useLanguage();
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const resumeRef = useRef<HTMLDivElement>(null);
 
@@ -181,123 +182,18 @@ const ResumeDocument = () => {
 
   const currentData = resumeData[language];
 
-  const generatePDF = async () => {
-    if (!resumeRef.current) return;
-    
-    setIsGeneratingPDF(true);
-    
-    try {
-      // Configurações otimizadas para melhor qualidade e formatação
-      const canvas = await html2canvas(resumeRef.current, {
-        scale: 1.5, // Escala otimizada para qualidade vs performance
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff', // Fundo branco para melhor legibilidade
-        width: 800, // Largura fixa para melhor controle
-        height: undefined, // Altura automática
-        logging: false,
-        removeContainer: true,
-        foreignObjectRendering: false,
-        imageTimeout: 15000,
-        scrollX: 0,
-        scrollY: 0,
-        windowWidth: 800,
-        windowHeight: resumeRef.current.scrollHeight,
-        onclone: (clonedDoc) => {
-          // Aplicar estilos específicos para PDF com texto preto para melhor legibilidade
-          const clonedElement = clonedDoc.querySelector('[data-resume-content]') as HTMLElement;
-          if (clonedElement) {
-            clonedElement.style.width = '800px';
-            clonedElement.style.maxWidth = '800px';
-            clonedElement.style.margin = '0';
-            clonedElement.style.padding = '40px';
-            // Aplicar fundo branco e texto preto para melhor legibilidade
-            clonedElement.style.backgroundColor = '#ffffff';
-            clonedElement.style.color = '#000000';
-            clonedElement.style.fontFamily = 'Arial, sans-serif';
-            clonedElement.style.fontSize = '14px';
-            clonedElement.style.lineHeight = '1.6';
-            
-            // Garantir que todo o conteúdo seja visível
-            clonedElement.style.overflow = 'visible';
-            clonedElement.style.height = 'auto';
-            clonedElement.style.minHeight = 'auto';
-            
-            // Aplicar texto preto a todos os elementos para garantir legibilidade
-            const allTextElements = clonedElement.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, li');
-            allTextElements.forEach((el) => {
-              const element = el as HTMLElement;
-              element.style.color = '#000000';
-              element.style.fontWeight = element.tagName.match(/^h[1-6]$/) ? 'bold' : 'normal';
-            });
-            
-            // Manter títulos com destaque mas legíveis
-            const titles = clonedElement.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            titles.forEach((title) => {
-              const titleElement = title as HTMLElement;
-              titleElement.style.color = '#1e40af'; // Azul escuro para títulos
-              titleElement.style.fontWeight = 'bold';
-              titleElement.style.borderBottom = '2px solid #1e40af';
-              titleElement.style.paddingBottom = '8px';
-              titleElement.style.marginBottom = '16px';
-            });
-          }
-        }
-      });
+    const openLocalPDF = () => {
+      const pdfPath = "/resume/kayqueallan-curriculo.pdf"; // caminho relativo à raiz do servidor
+      const link = document.createElement("a");
+      link.href = pdfPath;
+      link.download = "kayqueallan-curriculo.pdf"; // nome do arquivo baixado
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
 
-      // Criar PDF
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgData = canvas.toDataURL('image/png', 1.0);
-      
-      // Dimensões do PDF A4
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      // Calcular dimensões da imagem para caber no PDF
-      const imgWidth = pdfWidth - 20; // Margem de 10mm em cada lado
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      // Adicionar fundo branco à primeira página
-      pdf.setFillColor(255, 255, 255);
-      pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
-      
-      // Adicionar primeira página
-      pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-      
-      // Se a altura da imagem for maior que uma página, adicionar novas páginas
-      let heightLeft = imgHeight;
-      let position = 0;
-      let pageCount = 1;
-      
-      while (heightLeft > (pdfHeight - 20)) { // Mudança para > para incluir todo o conteúdo
-        position = heightLeft - (pdfHeight - 20);
-        pdf.addPage();
-        pageCount++;
-        
-        // Adicionar fundo branco à nova página
-        pdf.setFillColor(255, 255, 255);
-        pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
-        
-        // Ajustar posição para evitar cortes
-        const adjustedPosition = Math.max(0, -position + 10);
-        pdf.addImage(imgData, 'PNG', 10, adjustedPosition, imgWidth, imgHeight);
-        heightLeft -= (pdfHeight - 20);
-      }
-      
-      console.log(`PDF gerado com ${pageCount} páginas`);
-      
-      // Baixar o PDF
-      const timestamp = new Date().toISOString().split('T')[0];
-      const fileName = `Kayque_Allan_Resume_${language.toUpperCase()}_${timestamp}.pdf`;
-      pdf.save(fileName);
-      
-    } catch (error) {
-      console.error('Erro ao gerar PDF:', error);
-      alert('Erro ao gerar o PDF. Tente novamente.');
-    } finally {
-      setIsGeneratingPDF(false);
-    }
-  };
+
+
 
   return (
     <section id="resume" className="py-20 bg-section-bg">
@@ -306,25 +202,6 @@ const ResumeDocument = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             {language === 'pt' ? 'Currículo' : 'Resume'}
           </h2>
-          
-          <div className="flex justify-center gap-4 mb-8">
-            <Button 
-              variant={language === 'pt' ? 'default' : 'outline'}
-              onClick={() => setLanguage('pt')}
-              className="gap-2"
-            >
-              <Globe className="w-4 h-4" />
-              Português
-            </Button>
-            <Button 
-              variant={language === 'en' ? 'default' : 'outline'}
-              onClick={() => setLanguage('en')}
-              className="gap-2"
-            >
-              <Globe className="w-4 h-4" />
-              English
-            </Button>
-          </div>
         </div>
 
         {/* Resume Document */}
@@ -540,25 +417,17 @@ const ResumeDocument = () => {
 
           
           <div className="text-center mt-8">
-            <Button 
-              onClick={generatePDF}
-              disabled={isGeneratingPDF}
+            <Button
+              onClick={openLocalPDF}
               size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 gap-2 animate-glow disabled:opacity-50"
+              className="bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 gap-2 animate-glow"
             >
-              {isGeneratingPDF ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  {language === 'pt' ? 'Gerando PDF...' : 'Generating PDF...'}
-                </>
-              ) : (
-                <>
-                  <Download className="w-5 h-5" />
-                  {language === 'pt' ? 'Baixar PDF' : 'Download PDF'}
-                </>
-              )}
+              <Download className="w-5 h-5" />
+              {language === 'pt' ? 'Baixar PDF' : 'Download PDF'}
             </Button>
           </div>
+
+
         </div>
       </div>
     </section>

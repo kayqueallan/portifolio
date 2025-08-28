@@ -6,8 +6,10 @@ import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getFormspreeEndpoint, isFormspreeConfigured } from "@/config/formspree";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,8 +42,8 @@ const Contact = () => {
 
       if (response.ok) {
         toast({
-          title: "Mensagem enviada com sucesso!",
-          description: "Obrigado pelo contato. Responderei em breve!",
+          title: t('contactSuccessTitle'),
+          description: t('contactSuccessDescription'),
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
@@ -49,8 +51,8 @@ const Contact = () => {
       }
     } catch (error) {
       toast({
-        title: "Erro ao enviar mensagem",
-        description: "Ocorreu um erro. Tente novamente ou entre em contato diretamente pelo email.",
+        title: t('contactErrorTitle'),
+        description: t('contactErrorDescription'),
         variant: "destructive",
       });
     } finally {
@@ -76,11 +78,10 @@ const Contact = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Vamos Conversar?
+            {t('contactTitle')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Estou sempre aberto a novas oportunidades, projetos interessantes e colaborações. 
-            Entre em contato comigo através do formulário ou pelos canais abaixo.
+            {t('contactSubtitle')}
           </p>
         </div>
 
@@ -90,7 +91,7 @@ const Contact = () => {
             <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-300">
               <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2">
                 <MessageCircle className="w-6 h-6" />
-                Informações de Contato
+                {t('contactInfo')}
               </h3>
               
               <div className="space-y-4">
@@ -99,7 +100,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Email</p>
+                    <p className="font-medium text-foreground">{t('contactEmail')}</p>
                     <p className="text-muted-foreground">kayqueallanf@gmail.com</p>
                   </div>
                 </div>
@@ -109,7 +110,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Telefone</p>
+                    <p className="font-medium text-foreground">{t('contactPhone')}</p>
                     <p className="text-muted-foreground">+55 (31) 99108-2537</p>
                   </div>
                 </div>
@@ -119,14 +120,14 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Localização</p>
+                    <p className="font-medium text-foreground">{t('contactLocation')}</p>
                     <p className="text-muted-foreground">Minas Gerais, SP</p>
                   </div>
                 </div>
               </div>
               
               <div className="mt-8 pt-6 border-t border-border">
-                <h4 className="font-semibold text-foreground mb-4">Redes Sociais</h4>
+                <h4 className="font-semibold text-foreground mb-4">{t('contactSocialMedia')}</h4>
                 <div className="flex gap-4">
                   <Button 
                     variant="outline" 
@@ -166,21 +167,21 @@ const Contact = () => {
             )}
             <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-2">
               <Send className="w-6 h-6" />
-              Enviar Mensagem
+              {t('contactFormTitle')}
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Nome *
+                    {t('contactFormName')} *
                   </label>
                   <Input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Seu nome completo"
+                    placeholder={t('contactFormNamePlaceholder')}
                     required
                     disabled={isSubmitting}
                     className="bg-background/50 border-border focus:border-primary transition-colors"
@@ -188,14 +189,14 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Email *
+                    {t('contactFormEmail')} *
                   </label>
                   <Input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="seu@email.com"
+                    placeholder={t('contactFormEmailPlaceholder')}
                     required
                     disabled={isSubmitting}
                     className="bg-background/50 border-border focus:border-primary transition-colors"
@@ -205,14 +206,14 @@ const Contact = () => {
               
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
-                  Assunto *
+                  {t('contactFormSubject')} *
                 </label>
                 <Input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  placeholder="Assunto da sua mensagem"
+                  placeholder={t('contactFormSubjectPlaceholder')}
                   required
                   disabled={isSubmitting}
                   className="bg-background/50 border-border focus:border-primary transition-colors"
@@ -221,13 +222,13 @@ const Contact = () => {
               
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
-                  Mensagem *
+                  {t('contactFormMessage')} *
                 </label>
                 <Textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Descreva seu projeto ou dúvida..."
+                  placeholder={t('contactFormMessagePlaceholder')}
                   required
                   rows={6}
                   disabled={isSubmitting}
@@ -244,12 +245,12 @@ const Contact = () => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Enviando...
+                    {t('contactFormSending')}
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    Enviar Mensagem
+                    {t('contactFormSend')}
                   </>
                 )}
               </Button>

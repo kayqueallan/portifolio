@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Code2 } from "lucide-react";
+import { Moon, Sun, Code2, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const { setTheme, theme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +41,17 @@ const Header = () => {
                   : 'text-foreground/80 hover:text-primary'
               } text-lg font-medium`}
             >
-              Sobre mim
+              {t('home')}
+            </Link>
+            <Link 
+              to="/skills"
+              className={`transition-colors story-link ${
+                location.pathname === '/skills' 
+                  ? 'text-primary' 
+                  : 'text-foreground/80 hover:text-primary'
+              } text-lg font-medium`}
+            >
+              {t('skills')}
             </Link>
             <Link 
               to="/curriculo"
@@ -49,7 +61,7 @@ const Header = () => {
                   : 'text-foreground/80 hover:text-primary'
               } text-lg font-medium`}
             >
-              Currículo
+              {t('resume')}
             </Link>
             <Link 
               to="/experiencias"
@@ -59,7 +71,7 @@ const Header = () => {
                   : 'text-foreground/80 hover:text-primary'
               } text-lg font-medium`}
             >
-              Experiência
+              {t('experience')}
             </Link>
             <Link 
               to="/projetos"
@@ -69,12 +81,22 @@ const Header = () => {
                   : 'text-foreground/80 hover:text-primary'
               } text-lg font-medium`}
             >
-              Projetos
+              {t('projects')}
             </Link>
           </div>
 
           <div className="flex-1" />
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
+              className="hover:bg-muted px-3"
+            >
+              <Globe className="h-4 w-4 mr-1" />
+              {language === 'pt' ? 'EN' : 'PT'}
+            </Button>
+            
             <Button
               variant="ghost"
               size="icon"
@@ -90,7 +112,7 @@ const Header = () => {
               <Button 
                 className="bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 hover:scale-105"
               >
-                Contato
+                {t('contact')}
               </Button>
             </Link>
           </div>
@@ -109,13 +131,14 @@ const Header = () => {
           <Button variant="ghost" size="icon" className="absolute top-4 right-4" aria-label="Fechar menu" onClick={() => setMenuOpen(false)}>
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </Button>
-          <Link to="/" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Sobre mim</Link>
-          <Link to="/curriculo" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Currículo</Link>
-          <Link to="/experiencias" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Experiência</Link>
-          <Link to="/projetos" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">Projetos</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">{t('home')}</Link>
+          <Link to="/skills" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">{t('skills')}</Link>
+          <Link to="/curriculo" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">{t('resume')}</Link>
+          <Link to="/experiencias" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">{t('experience')}</Link>
+          <Link to="/projetos" onClick={() => setMenuOpen(false)} className="text-xl font-bold text-primary">{t('projects')}</Link>
           <Link to="/contato" onClick={() => setMenuOpen(false)}>
             <Button className="bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 hover:scale-105 mt-2">
-              Contato
+              {t('contact')}
             </Button>
           </Link>
         </div>

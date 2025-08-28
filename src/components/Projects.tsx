@@ -2,12 +2,15 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Projects = () => {
+  const { t } = useLanguage();
+  
   const projects = [
     {
-      title: "Pet Em Casa (Hotel para Pet)",
-      description: "Pet em Casa é um sistema web para gerenciar hospedagens de pets, registrar dados, controlar pertences e automatizar atendimentos, trazendo mais organização e confiança para tutores e equipe.",
+      title: t('project1Title'),
+      description: t('project1Description'),
       image: "/pettemcasa.png",
       technologies: ["JavaScript", "Node.js", "PostgreSQL", "HTML", "CSS"],
       github: "https://github.com/kayqueallan/PettEmCasa?tab=readme-ov-file",
@@ -17,8 +20,8 @@ const Projects = () => {
     
     
     {
-      title: "Dropfleet",
-      description: "A Dropfleet é uma plataforma para gestão e rastreamento de pedidos em tempo real, feita para donos de e-commerce e dropshipping. Com interface intuitiva e integração global, facilita o acompanhamento de entregas do pedido até o cliente final.",
+      title: t('project2Title'),
+      description: t('project2Description'),
       image: "/dropfleet.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       github: "https://github.com/kayqueallan/DropFleet",
@@ -27,8 +30,8 @@ const Projects = () => {
     },
 
     {
-      title: "Hotel Descansar",
-      description: "Um projeto desenvolvido em C para o Hotel, como parte de um trabalho acadêmico. Automatiza o cadastro de clientes, funcionários e estadias, simplificando a gestão manual com planilhas e garantindo integridade de dados.",
+      title: t('project3Title'),
+      description: t('project3Description'),
       image: "/hotel.jpg",
       technologies: ["C"],
       github: "https://github.com/kayqueallan/project-in-C-Hotel",
@@ -47,10 +50,11 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Projetos
+            {t('projectsTitle')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Desenvolvo soluções tecnológicas eficientes que transformam desafios complexos em resultados concretos e escaláveis.          </p>
+            {t('projectsSubtitle')}
+          </p>
         </div>
 
         {/* Featured Projects */}
@@ -83,13 +87,13 @@ const Projects = () => {
                     <Button variant="outline" size="sm" asChild className="gap-2 flex-1">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4" />
-                        Código
+                        {t('codeButton')}
                       </a>
                     </Button>
                     <Button size="sm" asChild className="gap-2 flex-1 bg-gradient-to-r from-primary to-accent">
                       <a href={project.demo} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4" />
-                        Demo
+                        {t('demoButton')}
                       </a>
                     </Button>
                   </div>

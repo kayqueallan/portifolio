@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border/20">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+  <footer className="bg-background border-t border-border/20 hidden md:block">
+      <div className="container mx-auto px-4 py-4">
+        <div className="grid grid-cols-3 gap-8 items-center">
           {/* Perfil */}
           <div className="space-y-3">
             <h3 className="text-lg font-semibold text-foreground">Kayque Allan</h3>
@@ -29,9 +29,9 @@ const Footer = () => {
           </div>
 
           {/* Navegação */}
-          <div className="space-y-3">
+            <div className="flex flex-col space-y-3">
             <h4 className="text-base font-medium text-foreground">Navegação</h4>
-            <div className="space-y-2">
+              <div className="flex flex-col space-y-2">
               <Link to="/" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
               <Link to="/skills" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Skills</Link>
               <Link to="/curriculo" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Currículo</Link>
@@ -41,9 +41,9 @@ const Footer = () => {
           </div>
 
           {/* Contato */}
-          <div className="space-y-3">
+            <div className="flex flex-col space-y-3 md:col-start-3 md:col-end-4">
             <h4 className="text-base font-medium text-foreground">Contato</h4>
-            <div className="space-y-2">
+              <div className="flex flex-col space-y-2">
               <a href="https://www.linkedin.com/in/kayqueallan/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="w-3 h-3" />
                 LinkedIn

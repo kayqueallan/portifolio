@@ -82,7 +82,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-primary/10 rounded-2xl blur-xl transform rotate-6"></div>
                 
                 {/* Profile Photo Container */}
-                <div className="relative w-full h-44 sm:h-60 md:h-80 lg:w-96 lg:h-[480px] rounded-2xl overflow-hidden border border-border/20 bg-gradient-to-br from-primary/20 to-accent/20 animate-float shadow-strong">
+                <div className="relative w-full h-64 sm:h-60 md:h-80 lg:w-96 lg:h-[480px] rounded-2xl overflow-hidden border border-border/20 bg-gradient-to-br from-primary/20 to-accent/20 animate-float shadow-strong">
                   <img 
                     src={profilePhoto} 
                     alt="Foto de perfil profissional" 

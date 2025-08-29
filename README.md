@@ -32,7 +32,7 @@ Para uma lista completa, consulte o arquivo `package.json`.
 A estrutura de diretórios do projeto está organizada da seguinte forma:
 
 ```
-portfolio-tiagoba/
+portfolio/
   ├── public/                      # Arquivos estáticos (favicon, imagens placeholder, robots.txt)
   ├── src/
   │   ├── assets/                  # Imagens e outros recursos
@@ -113,7 +113,8 @@ O site está publicado e pode ser acessado através do seguinte link:
 
 [Kayque Allan - Portfólio Online](https://kayqueallan-projects.vercel.app/)
 
-## Wireframes
+
+## Wireframes - [Figma](https://www.figma.com/design/JI4FQOR98fX3cEHrpgUHqW/Sem-t%C3%ADtulo?node-id=0-1&t=nRyNeBgcnuGm95W4-1).
 
 **Home:**
 
